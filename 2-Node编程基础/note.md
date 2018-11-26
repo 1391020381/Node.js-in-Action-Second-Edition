@@ -27,4 +27,10 @@
   module.exports = exports = Currency
   ```
 * 根据需要使用 exports或module.exports可以将功能组织成模块,规避掉程序脚本一直增长所产生的弊端。 
-## 用node_modules重用模块     
+## 用node_modules重用模块  
+
+* 使用环境变量NODE_PATH可以改变Node模块的默认路径。如果用了它,在Windows中NODE_PATH应该设置为分号分隔的目录列表,在其他操作系统中则用冒号分隔。
+### 注意事项 
+1. 如果模块目录,在模块目录中定义模块的文件必须被命令为index.js，除非你在这个目录下有一个叫package.json的文件里特别指明。要指定一个取代index.js的文件,package.json文件里必须有一个用javasctipt对象表示法(json)数据定义的对象,其中有一个mian的键,指明模块目录内主文件的路径。
+2. Node能把模块作为对象缓存起来。如果程序中的两个文件引入了相同的模块,第一个require会把模块返回的数据存到内存中,这样第二个require就不用再出访问和计算模块饿源文件了。也就是说,在同一个进程中用require加载一个模块得到的是相同的对象。
+3. 假设你搭建了一个MVCWeb应用程序,它有一个主对象app。你可以设置好那个app对象,导出它,然后再项目中任何地方require它。如果你在这个app对象中放了一些配置信息,那你就可以在其他文件中访问这个配置信息的值。
