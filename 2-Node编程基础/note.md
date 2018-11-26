@@ -6,7 +6,7 @@
 
 ## 创建模块
 * 模块既可以是一个文件,也可以是包含一个多个文件的目录。如果模块是一个目录,Node通常会在这个目录下找一个叫index.js的文件作为模块的入口(这个是默认设置可以重写)  
-* 使用新模块要用到Node的require函数,该函数以所用模块的路径为参数。Node以同步的方式寻找模块,定位到这个模块并加载文件中的内容。Node查找文件的顺序是先找核心模块,然后是当前目录,最后是node_modules。
+* 使用新模块要用到Node的require函数,该函数以所用模块的路径为参数。Node以同步的方式寻找模块,定位到这个模块并加载文件中的内容。`Node查找文件的顺序是先找核心模块,然后是当前目录,最后是node_modules`。
 
 ## 关于require和同步I/O 
 * require是Node中少数几个同步I/O操作之一。因为经常用到模块,并且一般都是在文件顶端引入,所以把require做成同步的有利于保持代码的整洁、有序、还能增强可读性。
@@ -18,3 +18,13 @@
 * `因为Node觉得不能用任何其他对象、函数或变量给 exports赋值`
 * 用 module.exports可以对外提供单个变量、函数或者对象。
 * 如果你创建了一个既有exports又有 module.exports的模块,那它会返回module.exports，而exports会被忽略。
+
+## 到出的究竟是什么
+* 最终在程序里导出的是 module.exports。exports只是对module.exports的一个全局引用,最初被定义为一个可以添加属性的空对象。exports.myFunc只是 module.exports.myFunc的简写。
+* 所以,如果把exports设定为别的,就打破了module.exports和exports之间的引用关系。可是因为真正导出的是module.exports,那样exports就不能用了,因为它不再执向module.exports了。如果你想保留那个链接,可以像下面这样让module.exports再次引用 exports:
+  
+  ```
+  module.exports = exports = Currency
+  ```
+* 根据需要使用 exports或module.exports可以将功能组织成模块,规避掉程序脚本一直增长所产生的弊端。 
+## 用node_modules重用模块     
