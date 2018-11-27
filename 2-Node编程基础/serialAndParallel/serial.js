@@ -24,25 +24,26 @@ function readRSSFile(configFilename) {
 }
 
 function downloadRSSFeed(feedUrl) {
-    request(({ url: feedUrl }, (err, res, body)) => {
-        if(err) {
+    request({ url: feedUrl }, function (err, res, body) {
+        if (err) {
             return next(err)
         }
-        if(res.statusCode !== 200){
-        return next(new Error('Abnormal response status code'))
-    }
-    next(null, body)
-})
+        if (res.statusCode !== 200) {
+            return next(new Error('Abnormal response status code'))
+        }
+        next(null, body)
+    })
 }
 
 function parseRSSFeed(rss) {
     const handler = new htmlparser.RssHandler()
+    const items = handler.dom.items
     const parser = new htmlparser.Parser(handler)
     parser.parseComplete(rss)
-    if (!handler.dom.items.length) {
+    if (!(items && items.length)) {
         return next(new Error('No RSS items found'))
     }
-    const item = handler.dom.items.shift()
+    const item = items.shift()
     console.log(item.title)
     console.log(item.link)
 }

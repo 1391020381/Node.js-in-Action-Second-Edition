@@ -1,2 +1,2 @@
-Of Course ML Has Monads!
-http://lambda-the-ultimate.org/node/4306
+http://blog.nodejs.org/feed/
+http://blog.npmjs.org/rss
