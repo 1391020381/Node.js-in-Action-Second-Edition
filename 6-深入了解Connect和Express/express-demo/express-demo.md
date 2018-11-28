@@ -17,3 +17,4 @@
 #### 将数据传递给视图的办法
 * 作为res.render()的参数。此外,还可以在路由处理器之前的中间件中的设定一些变量,比如用 app.locals  传递程序层面的数据,用res.locals传递请求层面的数据。
 * 将变量直接作为res.render()的参数优先级最高,要高于在res.locals和app.locals中设定的变量值。
+* 默认情况下,Express只会向视图中传递一个程序级别变量———— setting,这个对象中包含所有用 app.set()设定的值。比如 app.set('title','My Application')会把 setting.tittle输出模板中。
