@@ -22,7 +22,7 @@
 2. 命令行工具和后台程序
 * npm 、Gulp、Webpack
 * node cli.js  a b c 在cli中可以通过 process.argv获取 a b c参数数组
-* Node命令行程序还可以做其他事情。如果在程序开头的地方加上#!,并赋予其执行许可(chmod + x cli.js),shell就可以砸调用程序时使用Node。也就是说可以像运行其他shell脚本那样运行Node程序。在类Unix系统中用下面这样的代码。
+* `Node命令行程序还可以做其他事情。如果在程序开头的地方加上#!,并赋予其执行许可(chmod + x cli.js),shell就可以砸调用程序时使用Node。也就是说可以像运行其他shell脚本那样运行Node程序。在类Unix系统中用下面这样的代码。`
 ```
 #!/usr/bin/env node
 ```
