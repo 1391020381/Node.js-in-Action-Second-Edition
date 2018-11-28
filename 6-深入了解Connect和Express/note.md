@@ -26,3 +26,19 @@ app.use(setup({some:'options'}))
 * Connect中有一种用来处理错误的中间件变体,跟常规的中间件相比,除了请求、响应对象外,错误处理中间件的参数中还多了一个错误对象。
 
 * 用NODE_ENV设定程序的模式 Connect一般会根据环境变量 NODE_ENV(process.env.NODE_ENV)来切换不同服务器环境(比如生产和开发环境)
+
+
+### 设置环境变量
+* 要在 UNIX系统中设置环境变量,可以用这个命令：
+```
+NODE_ENV = production node app
+
+```
+
+* 在 Windows 中用这个
+```
+set NODE_ENV = production
+
+node app
+
+```
